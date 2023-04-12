@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock, Paper, Scissors</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	body {
+		margin: 50px;
+		font-family: 'Courier New', Courier, monospace;
+	}
+	img {
+		background-color: orange;
+		width: 100px;
+		height: 100px;
+		
+		border-radius: 50%;}
+	button {
+		width: 100px;
+	}
+	div {
+		padding: 20px;
+	}
+
+	#result {
+		color: rgb(180, 122, 13);
+		font-size: 16px;
+		font-weight: bold;
+	}
+	</style>
+</head>
+<body>
+
+	<h1>Rock, Paper, Scissors</h1>
+
+	<div id="game">
+		<img src="img\rock.png" alt="scissors">
+		<img src="img\paper.png" alt="scissors">
+		<img src="img\scissors.gif" alt="scissors"><br>
+		<button onclick="playRound('Rock')">Rock</button>
+		<button onclick="playRound('Paper')">Paper</button>		
+		<button onclick="playRound('Scissors')">Scissors</button>
+	</div>
+
+	<div id="result"></div>
+
+	<script>
+		var options = ["Rock", "Paper", "Scissors"];
+		var playerScore = 0;
+		var computerScore = 0;
+
+		function playRound(playerChoice) {
+			var computerChoice = options[Math.floor(Math.random() * options.length)];
+			var roundResult;
+
+			if (playerChoice == computerChoice) {
+				roundResult = "Tie!";
+			} else if ((playerChoice == "Rock" && computerChoice == "Scissors") ||
+					   (playerChoice == "Paper" && computerChoice == "Rock") ||
+					   (playerChoice == "Scissors" && computerChoice == "Paper")) {
+				playerScore++;
+				roundResult = "You win!";
+			} else {
+				computerScore++;
+				roundResult = "The computer wins!";
+			}
+
+			var resultText = "You chose " + playerChoice + ". The computer chose " + computerChoice + ". " + roundResult;
+			resultText += "<br><br>Player score: " + playerScore + "<br>Computer score: " + computerScore;
+
+			document.getElementById("result").innerHTML = resultText;
+		}
+	</script>
+
+</body>
+</html>
